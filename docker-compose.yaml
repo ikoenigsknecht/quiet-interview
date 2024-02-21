@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  # postgres
+  postgres_quiet:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: quiet-interview
+    ports:
+      - "5433:5432"
+
+  # redis
+  redis_quiet:
+    image: redis/redis-stack:latest
+    restart: always
+    ports:
+      - '6381:6379'
+    environment:
+      REDIS_ARGS: "--save 60 1000 --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"
+
+volumes:
+  postgres_qiet:
+    driver: local
+  redis_quiet:
+    driver: local
